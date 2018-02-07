@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+<!--     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.action.extension" value="action" />
+	 -->
+<package name="data" namespace="/" extends="struts-default">
+	<action name="upload_*" class="com.gpg.action.UploadDemo" method="{1}">
+		<result name="success" type="redirectAction">
+			<param name="actionName">upload_list</param>
+			<param name="namespace">/</param>
+		</result>
+		<result name="list">/list.jsp</result>
+		<result name="input">/error.jsp</result>
+		<result name="down" type="stream">
+			<!-- 运行下载的问价类型：指定为所有的二进制文件 -->
+			<param name="contentType">application/octet-stream</param>
+			<!-- 对应action中的属性返回流的属性 -->
+			<param name="inputName">attrInputStream</param>
+			<param name="contentDisposition">attachment;filename=${downFileName}</param>
+			<param name="bufferSize">1024</param>
+		</result>
+	</action>
+</package>
+
+
+
+</struts>
